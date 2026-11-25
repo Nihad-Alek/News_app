@@ -7,11 +7,9 @@ A RESTful API for a news application built with Python and FastAPI.
 - Python
 - FastAPI
 - SQLAlchemy
-- PostgreSQL
-- Alembic
+- SQLite
 - Pydantic
 - python-dotenv
-- psycopg2
 
 ## Features
 
