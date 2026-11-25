@@ -53,7 +53,7 @@ def get_news(id: str , db: Session = Depends(get_db)):
     }
 
 @router.get('/{id}/related')
-def get_news_related(id: str , limit: int = Query(5 , ge=1 , le=20) , db = Session(get_db)):
+def get_news_related(id: str , limit: int = Query(5 , ge=1 , le=20) , db: Session = Depends(get_db)):
     news_id = parse_id(id)
 
     category_id = db.scalar(
@@ -69,7 +69,7 @@ def get_news_related(id: str , limit: int = Query(5 , ge=1 , le=20) , db = Sessi
         .order_by(Article.created_at.desc())
         .limit(limit)
     )
-    articles = db.execute(stmt).unique().all()
+    articles = db.execute(stmt).unique().scalars().all()
     return [
     {
         "id": a.id,
